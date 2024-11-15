@@ -1,4 +1,4 @@
-name: 1.4-echo-hello-world-when-manual-trigger
+name: 1.1-echo-hello-world-when-manual-trigger
 
 on:
   workflow_dispatch:
