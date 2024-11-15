@@ -1,4 +1,4 @@
-name: 1.5-echo-hello-world-when-specific-comment
+name: 1.6-echo-hello-world-when-specific-comment
 
 on:
   issue_comment:

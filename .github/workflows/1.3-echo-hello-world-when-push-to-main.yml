@@ -1,4 +1,4 @@
-name: 1.2-echo-hello-world-when-push-to-main
+name: 1.3-echo-hello-world-when-push-to-main
 
 on:
   push:
