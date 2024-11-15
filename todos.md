@@ -1,7 +1,0 @@
-- 1.1-echo-hello-world-when-pr-changed
-- 1.2-echo-hello-world-when-comment
-- 1.3-echo-hello-world-when-specific-comment
-- 1.4-echo-hello-world-when-manual-trigger
-- 2.1-comment-hello-world-when-pr
-- 2.2-comment-hello-world-when-comment
-- 2.3-comment-hello-world-when-manual-trigger
