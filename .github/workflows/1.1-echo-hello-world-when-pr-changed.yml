@@ -4,6 +4,7 @@ on:
   pull_request: # Trigger the workflow on pull requests, change
     types:
       - opened
+      - synchronize 
 
 jobs:
   echo-hello-world-when-pr-changed:
