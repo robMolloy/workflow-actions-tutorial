@@ -1,4 +1,4 @@
-name: PR Comment Hello You
+name: 1.3-echo-hello-world-when-specific-comment
 
 on:
   issue_comment:
@@ -6,7 +6,7 @@ on:
       - created
 
 jobs:
-  greet_on_pr_comment:
+  1.3-echo-hello-world-when-specific-comment:
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == 'hello you' }}
     runs-on: ubuntu-latest
 
