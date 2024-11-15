@@ -9,4 +9,4 @@ jobs:
 
     steps:
     - name: Say Hello
-      run: echo "Hello, World! This workflow was triggered by a push
+      run: echo "Hello, World! This workflow was triggered by a push"
