@@ -3,7 +3,7 @@ name: 1.3-echo-hello-world-when-specific-comment
 on:
   issue_comment:
     types:
-      - created
+      - created # Trigger the workflow on comment creation
 
 jobs:
   echo-hello-world-when-specific-comment:
