@@ -1,7 +1,7 @@
-name: _1.1-echo-hello-world-when-pr-changed.yml
+name: 1.1-echo-hello-world-when-pr-changed.yml
 
 on:
-  pull_request:
+  pull_request: # Trigger the workflow on pull requests
     types:
       - opened
       - synchronize
