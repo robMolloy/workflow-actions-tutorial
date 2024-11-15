@@ -1,12 +1,13 @@
 name: 1.2-echo-hello-world-when-comment
 
 on:
-  issue_comment: # Trigger the workflow on comment, small change, again
+  issue_comment: 
     types:
       - created
 
 jobs:
   echo-hello-world-when-comment:
+    if: false
     runs-on: ubuntu-latest
 
     steps:
