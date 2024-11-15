@@ -1,0 +1,15 @@
+name: 1.3-echo-hello-world-when-specific-comment
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  1.3-echo-hello-world-when-specific-comment:
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == 'hello you' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hello
+      run: echo "Hello, World! Someone said 'hello you' on a pull request."
