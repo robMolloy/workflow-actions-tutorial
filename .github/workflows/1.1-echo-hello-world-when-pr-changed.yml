@@ -8,6 +8,7 @@ on:
 
 jobs:
   echo-hello-world-when-pr-changed:
+    if: false
     runs-on: ubuntu-latest
 
     steps:
