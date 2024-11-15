@@ -1,7 +1,7 @@
 name: 1.2-echo-hello-world-when-comment
 
 on:
-  issue_comment: # Trigger the workflow on comment, small change
+  issue_comment: # Trigger the workflow on comment, small change, again
     types:
       - created
 
