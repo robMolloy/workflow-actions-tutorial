@@ -16,4 +16,4 @@ jobs:
     - name: Echo the input message
       run: 
         echo ${{ github.event.inputs.message }}
-        echo "You entered '${{ github.event.inputs.message }}'"
+        echo "\n\n You entered '${{ github.event.inputs.message }}'"
