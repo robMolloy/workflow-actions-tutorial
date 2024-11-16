@@ -1,0 +1,18 @@
+name: Manual Trigger with Input
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Enter the text to echo'
+        required: true
+        default: 'Hello, World!'
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Echo the input message
+      run: 
+        echo "You entered: ${{ github.event.inputs.message }}"

@@ -9,7 +9,7 @@
 
 # ingesting inputs
 
-- 2.1-echo-text-with-manual-trigger
+- 2.1-echo-input-text-with-manual-trigger
 
 # commenting
 
