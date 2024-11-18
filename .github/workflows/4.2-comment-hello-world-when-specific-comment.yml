@@ -1,19 +1,25 @@
-name: 4.2-comment-hello-world-when-specific-comment
-
 on:
   issue_comment: 
     types:
-      - created # asd
+      - created # blah
 
 jobs:
   serializing-data:
-    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '/trigger-relevant-data' }}
     runs-on: ubuntu-latest
 
     steps:
+    - name: debug
+      run: |
+        echo github.event.issue.pull_request
+        echo null && github.event.comment.body 
+        echo '/trigger-hello-world-comment'
     - name: Serialize and echo github context
       run: |
         echo '${{ toJson(github) }}'
     
-    - name: Say Hello
-      run: echo "Hello, World! Someone said 'hello you' on a pull request."
+    - name: trigger-hello-world-comment
+      run: |
+        COMMENT="hello world"
+        curl -X POST \
+          -H "Authorization: token ${GITHUB_TOKEN}" \
+          -d "{\"body\": \"${COMMENT}\"}" \
