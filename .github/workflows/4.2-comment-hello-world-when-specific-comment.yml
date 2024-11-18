@@ -1,53 +1,59 @@
+name: Find Open PRs for Selected Branch and Comment with Time
+
 on:
-  issue_comment: 
-    types:
-      - created # blah3
+  workflow_dispatch:  # Trigger manually
 
 jobs:
-  serializing-data:
-    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '/trigger-hello-world-comment' }}
+  find-prs:
     runs-on: ubuntu-latest
-    
-    permissions:
-      issues: write
-
 
     steps:
-    - name: Serialize and echo github context
-      run: |
-        echo '${{ toJson(github) }}'
+      - name: Checkout the code
+        uses: actions/checkout@v3
 
-    - name: debug
-      run: |
-        echo '123'
-        echo ${{ github.event.issue.pull_request }}
-        echo ${{ github.event.comment.body  }}
-        echo ${{ secrets.GITHUB_TOKEN  }}
-        echo ${{ github.event.issue.number  }}
-        echo ${{ github.repository  }}
-        echo '/trigger-hello-world-comment'
-    
-    - name: trigger-hello-world-comment
-      run: |
-        # Get the current time
-        CURRENT_TIME=$(date --utc +'%Y-%m-%d %H:%M:%S')
+      - name: Get the branch selected for the workflow
+        id: get-branch
+        run: |
+          # Get the branch name from the selected ref
+          SELECTED_BRANCH="${GITHUB_REF#refs/heads/}"
+          echo "Selected branch: $SELECTED_BRANCH"
+          echo "branch=$SELECTED_BRANCH" >> $GITHUB_ENV
 
-        # Construct the JSON payload for the comment
-        COMMENT=$(printf "### Current Time\nThe current time is: %s\n" "$CURRENT_TIME")
-        JSON_PAYLOAD=$(jq -n --arg body "$COMMENT" '{body: $body}')
+      - name: Get open PRs and filter by selected branch
+        id: fetch-prs
+        run: |
+          # Fetch all open pull requests for the repository using GitHub API
+          PRS=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls?state=open")
 
-        # Post the comment on the PR
-        curl -X POST \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Content-Type: application/json" \
-          -d "$JSON_PAYLOAD" \
-          "https://api.github.com/repos/${{ github.repository }}/issues/${github.event.issue.number}/comments"
-        
-        
-      # curl -L \
-      #   -X POST \
-      #   -H "Accept: application/vnd.github+json" \
-      #   -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-      #   -H "X-GitHub-Api-Version: 2022-11-28" \
-      #   "${{ API_URL }}" \
-      #   -d '{"body":"Me too"}'
+          # Debugging: Print all PRs to verify data
+          echo "All open PRs:"
+          echo "$PRS" | jq -r ".[] | .url, .title, .head.ref, .number"
+
+          # Filter PRs that are associated with the selected branch
+          PR_NUMBERS=$(echo "$PRS" | jq -r ".[] | select(.head.ref == \"$branch\") | .number")
+
+          # Store the PR numbers as an environment variable for use in the next step
+          echo "pr_numbers=$PR_NUMBERS" >> $GITHUB_ENV
+
+      - name: Comment on PRs with current time
+        run: |
+          # Get the current time
+          CURRENT_TIME=$(date --utc +'%Y-%m-%d %H:%M:%S')
+
+          # Loop through the filtered PR numbers and comment on each
+          for PR_NUMBER in $pr_numbers; do
+            COMMENT="### Current Time\n"
+            COMMENT+="The current time is: ${CURRENT_TIME}\n"
+
+            # Post the comment on the PR
+            curl -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -d "{\"body\": \"${COMMENT}\"}" \
+              "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
+          done
+
+      - name: Show completion message
+        run: echo "Completed commenting on PRs."
