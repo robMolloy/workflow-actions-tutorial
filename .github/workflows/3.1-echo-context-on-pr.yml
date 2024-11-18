@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Echo the input message
+    - name: Install jq
+      run: sudo apt-get install -y jq
+
+    - name: Serialize and echo github context
       run: |
-        echo ${{ toJson(github) }}
+        echo '${{ toJson(github) }}' | jq .
