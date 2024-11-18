@@ -1,12 +1,6 @@
 name: 3.1-echo-context-on-pr
 
-on:
-  workflow_dispatch:
-    inputs:
-      message:
-        description: 'Enter the text to echo'
-        required: true
-        default: 'Hello, World!'
+on: workflow_dispatch
 
 jobs:
   greet:
