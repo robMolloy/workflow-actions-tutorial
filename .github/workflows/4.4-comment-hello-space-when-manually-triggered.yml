@@ -18,9 +18,10 @@ jobs:
 
       - name: Post Relevant data Comment
         run: |
-          echo "${{ github.event.inputs.init_message }}"
+          echo "${{ github.event.inputs.pr_number }}"
+          echo "https://github.com/${{ github.repository }}/pull/${{ github.event.inputs.pr_number }}" 
         # curl -X POST \
         #   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
         #   -H "Content-Type: application/json" \
         #   -d '{ "body": "hello space" }' \
-        #   "${{ github.event.issue.comments_url }}"
+        #   "https://github.com/robMolloy/workflow-actions-tutorial/pull/9"
