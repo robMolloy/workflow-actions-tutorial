@@ -22,7 +22,4 @@ jobs:
               repo,
               workflow_id,
               ref,
-              inputs: {
-                pr_number: github.event.issue.number
-              }
             });
