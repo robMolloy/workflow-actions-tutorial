@@ -20,8 +20,8 @@ jobs:
         run: |
           echo "${{ github.event.inputs.pr_number }}"
           echo "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.inputs.pr_number }}/comments" 
-        # curl -X POST \
-        #   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-        #   -H "Content-Type: application/json" \
-        #   -d '{ "body": "hello space" }' \
-        #   "https://github.com/robMolloy/workflow-actions-tutorial/pull/9"
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{ "body": "${{ github.repository_owner}} triggered this comment with '${{ github.event.comment.body }}'" }' \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.inputs.pr_number }}/comments" 
