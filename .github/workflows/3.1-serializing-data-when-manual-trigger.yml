@@ -9,4 +9,4 @@ jobs:
     steps:
     - name: Serialize and echo github context
       run: |
-        echo '${{ toJson(github) }}' | jq .
+        echo '${{ toJson(github) }}'
