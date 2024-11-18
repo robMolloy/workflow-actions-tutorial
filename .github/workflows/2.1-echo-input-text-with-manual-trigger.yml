@@ -18,10 +18,9 @@ jobs:
         # Store the input message in a Bash variable
         MY_MESSAGE="${{ github.event.inputs.message }}"
 
-        # Echo the message using both the direct reference and the stored variable
-        echo "${{ github.event.inputs.message }}"
         echo "$MY_MESSAGE"
 
         # Echo with a custom message for clarity
         echo "\n\nYou entered: '${{ github.event.inputs.message }}'"
         echo "\n\nYou entered: '$MY_MESSAGE'"
+        echo "\n\nYou entered: $MY_MESSAGE"
