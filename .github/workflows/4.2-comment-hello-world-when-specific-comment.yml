@@ -13,7 +13,7 @@ jobs:
       - name: Post Hello World Comment
         run: |
           # Construct the JSON payload for the comment
-          JSON_PAYLOAD=$(jq -n --arg body "hello world" '{body: $body}')
+          JSON_PAYLOAD=$(jq -n --arg body "hello world2" '{body: $body}')
 
           # Post the comment on the PR
           curl -X POST \
