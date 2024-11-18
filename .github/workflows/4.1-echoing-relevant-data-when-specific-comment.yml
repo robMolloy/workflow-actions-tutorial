@@ -1,9 +1,13 @@
 name: 4.1-echoing-relevant-data-when-specific-comment
 
-on: workflow_dispatch
+on:
+  issue_comment: 
+    types:
+      - created
 
 jobs:
   serializing-data:
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '/trigger-relevant-data' }}
     runs-on: ubuntu-latest
 
     steps:
