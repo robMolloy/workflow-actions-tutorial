@@ -11,10 +11,12 @@
 
 - 2.1-echo-input-text-with-manual-trigger
 
+# serializing data
+
+- 3.1-serializing-data-when-manual-trigger
+
 # commenting
 
-- 3.1-echo-context-on-pr
-
-# commenting
-
-- 3.1-comment-hello-world-when-pr
+- 4.1-echoing-relevant-data-when-specific-comment
+- 4.2-comment-hello-world-when-specific-comment
+- 4.3-comment-relevant-data-when-specific-comment
