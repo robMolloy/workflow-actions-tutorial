@@ -1,59 +1,38 @@
-name: Find Open PRs for Selected Branch and Comment with Time
+name: Respond to Trigger Comment
 
 on:
-  workflow_dispatch:  # Trigger manually
+  issue_comment:
+    types: [created]  # Trigger when a new comment is created
 
 jobs:
-  find-prs:
+  comment-on-pr:
+    if: ${{ github.event.issue.pull_request }}  # Only proceed if the comment is on a pull request
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v3
-
-      - name: Get the branch selected for the workflow
-        id: get-branch
+      - name: Check for Trigger Phrase
+        id: check-trigger
         run: |
-          # Get the branch name from the selected ref
-          SELECTED_BRANCH="${GITHUB_REF#refs/heads/}"
-          echo "Selected branch: $SELECTED_BRANCH"
-          echo "branch=$SELECTED_BRANCH" >> $GITHUB_ENV
+          COMMENT_BODY="${{ github.event.comment.body }}"
+          if [[ "$COMMENT_BODY" == "trigger-hello-world" ]]; then
+            echo "triggered=true" >> $GITHUB_ENV
+          else
+            echo "triggered=false" >> $GITHUB_ENV
 
-      - name: Get open PRs and filter by selected branch
-        id: fetch-prs
+      - name: Post Hello World Comment
+        if: ${{ env.triggered == 'true' }}
         run: |
-          # Fetch all open pull requests for the repository using GitHub API
-          PRS=$(curl -s \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/pulls?state=open")
+          # Construct the JSON payload for the comment
+          JSON_PAYLOAD=$(jq -n --arg body "hello world" '{body: $body}')
 
-          # Debugging: Print all PRs to verify data
-          echo "All open PRs:"
-          echo "$PRS" | jq -r ".[] | .url, .title, .head.ref, .number"
-
-          # Filter PRs that are associated with the selected branch
-          PR_NUMBERS=$(echo "$PRS" | jq -r ".[] | select(.head.ref == \"$branch\") | .number")
-
-          # Store the PR numbers as an environment variable for use in the next step
-          echo "pr_numbers=$PR_NUMBERS" >> $GITHUB_ENV
-
-      - name: Comment on PRs with current time
-        run: |
-          # Get the current time
-          CURRENT_TIME=$(date --utc +'%Y-%m-%d %H:%M:%S')
-
-          # Loop through the filtered PR numbers and comment on each
-          for PR_NUMBER in $pr_numbers; do
-            COMMENT="### Current Time\n"
-            COMMENT+="The current time is: ${CURRENT_TIME}\n"
-
-            # Post the comment on the PR
-            curl -X POST \
-              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -d "{\"body\": \"${COMMENT}\"}" \
-              "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
-          done
+          # Post the comment on the PR
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "$JSON_PAYLOAD" \
+            "${{ github.event.issue.comments_url }}"
 
       - name: Show completion message
-        run: echo "Completed commenting on PRs."
+        if: ${{ env.triggered == 'true' }}
+        run: |
+          echo "Commented: hello world"
