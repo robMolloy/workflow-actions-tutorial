@@ -20,7 +20,10 @@
 - 4.1-echoing-relevant-data-when-specific-comment
 - 4.2-comment-hello-world-when-specific-comment
 - 4.3-comment-relevant-data-when-specific-comment
+- 4.4-comment-hello-space-when-manually-triggered
 
-# commenting
+# starting workflows from other workflows
 
 - 5.1-starting-one-workflow-from-another-when-manual-trigger
+- 5.2-starting-one-workflow-from-another-which-requires-input-when-manual-trigger
+- 5.3-starting-one-workflow-from-another-pass-input-when-manual-trigger
