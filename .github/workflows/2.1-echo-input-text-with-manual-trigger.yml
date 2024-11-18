@@ -20,4 +20,4 @@ jobs:
         echo $MY_MESSAGE
         echo "\n\n You entered '${{ github.event.inputs.message }}'"
         echo "\n\n You entered '${{ MY_MESSAGE }}'"
-        echo "\n\n You entered " + $MY_MESSAGE
+        echo "\n\n You entered " + "${{ MY_MESSAGE }}"
