@@ -1,0 +1,26 @@
+name: 4.4-comment-hello-space-when-manually-triggered
+
+on: 
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Enter the text to echo'
+        required: true
+
+jobs:
+  comment-on-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Serialize and echo github context
+        run: |
+          echo '${{ toJson(github) }}'
+
+      - name: Post Relevant data Comment
+        run: |
+          echo "${{ github.event.inputs.init_message }}"
+        # curl -X POST \
+        #   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        #   -H "Content-Type: application/json" \
+        #   -d '{ "body": "${{ github.repository_owner}} triggered this comment with '${{ github.event.comment.body }}'" }' \
+        #   "${{ github.event.issue.comments_url }}"
