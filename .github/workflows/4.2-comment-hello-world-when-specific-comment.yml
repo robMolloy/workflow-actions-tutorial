@@ -1,4 +1,4 @@
-name: 4.2-comment-hello-world-when-specific-comment
+name: 4.3-comment-with-relevant-data-when-specific-comment
 
 on:
   issue_comment:
@@ -13,7 +13,7 @@ jobs:
       - name: Post Hello World Comment
         run: |
           # Construct the JSON payload for the comment
-          JSON_PAYLOAD=$(jq -n --arg body "hello world2" '{body: $body}')
+          JSON_PAYLOAD="hello asd"
 
           # Post the comment on the PR
           curl -X POST \
