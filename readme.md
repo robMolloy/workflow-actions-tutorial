@@ -27,3 +27,7 @@
 - 5.1-starting-one-workflow-from-another-when-manual-trigger
 - 5.2-starting-one-workflow-from-another-which-requires-input-when-manual-trigger
 - 5.3-starting-one-workflow-from-another-pass-input-when-manual-trigger
+
+# accessing code
+
+- 6.1-echoing-code-from-a-file-in-a-repo
