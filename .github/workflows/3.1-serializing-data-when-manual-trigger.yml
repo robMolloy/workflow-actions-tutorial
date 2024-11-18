@@ -3,7 +3,7 @@ name: 3.1-serializing-data-when-manual-trigger
 on: workflow_dispatch
 
 jobs:
-  greet:
+  serializing-data:
     runs-on: ubuntu-latest
 
     steps:
