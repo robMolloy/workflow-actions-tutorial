@@ -17,6 +17,9 @@ jobs:
       run: |
         echo ${{ github.event.issue.pull_request }}
         echo ${{ github.event.comment.body  }}
+        echo ${{ secrets.GITHUB_TOKEN  }}
+        echo ${{ github.event.issue.number  }}
+        echo ${{ github.repository  }}
         echo '/trigger-hello-world-comment'
     
     - name: trigger-hello-world-comment
