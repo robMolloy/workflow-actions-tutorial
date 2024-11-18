@@ -1,7 +1,7 @@
 on:
   issue_comment: 
     types:
-      - created # blah
+      - created # blah2
 
 jobs:
   serializing-data:
@@ -11,7 +11,7 @@ jobs:
     - name: debug
       run: |
         echo github.event.issue.pull_request
-        echo null && github.event.comment.body 
+        echo github.event.comment.body 
         echo '/trigger-hello-world-comment'
     - name: Serialize and echo github context
       run: |
