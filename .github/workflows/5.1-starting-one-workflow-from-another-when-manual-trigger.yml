@@ -10,7 +10,7 @@ jobs:
       - name: Debug GitHub Context
         run: echo "${{ toJson(github) }}"
 
-      - name: Trigger Comment Time Workflow
+      - name: Trigger another Workflow
         uses: actions/github-script@v6
         with:
           script: |
