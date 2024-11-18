@@ -1,4 +1,4 @@
-name: 4.3-comment-with-relevant-data-when-specific-comment
+name: 4.2-comment-hello-world-when-specific-comment
 
 on:
   issue_comment:
@@ -19,7 +19,7 @@ jobs:
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d "$JSON_PAYLOAD" \
+            -d '{"body":"Me too"}' \
             "${{ github.event.issue.comments_url }}"
 
       - name: Show completion message
