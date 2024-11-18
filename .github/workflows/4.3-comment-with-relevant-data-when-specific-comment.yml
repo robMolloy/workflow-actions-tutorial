@@ -19,5 +19,5 @@ jobs:
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{ "body": "hello world2" }' \
+            -d '{ "body": "relevant data" }' \
             "${{ github.event.issue.comments_url }}"
