@@ -22,5 +22,5 @@ jobs:
         echo ${{ github.event.inputs.message }}
         echo github.event.inputs.message 
         echo "\n\nYou entered: '${{ github.event.inputs.message }}'"
-        echo -e "\n\nYou entered: '$MY_MESSAGE'"
+        echo -e "Here are some new lines for your viewing pleasure\n\nYou entered: '$MY_MESSAGE'\n\n"
         echo "\n\nYou entered: $MY_MESSAGE"
