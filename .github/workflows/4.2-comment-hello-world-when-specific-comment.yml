@@ -10,15 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check for Trigger Phrase
-        id: check-trigger
-        run: |
-          COMMENT_BODY="${{ github.event.comment.body }}"
-          if [[ "$COMMENT_BODY" == "trigger-hello-world" ]]; then
-            echo "triggered=true" >> $GITHUB_ENV
-          else
-            echo "triggered=false" >> $GITHUB_ENV
-
       - name: Post Hello World Comment
         if: ${{ env.triggered == 'true' }}
         run: |
