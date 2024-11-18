@@ -7,7 +7,7 @@ on:
 
 jobs:
   serializing-data:
-    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '/trigger-relevant-data' }}
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '/trigger-hello-world-comment' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -15,5 +15,9 @@ jobs:
       run: |
         echo '${{ toJson(github) }}'
     
-    - name: Say Hello
-      run: echo "Hello, World! Someone said 'hello you' on a pull request."
+    - name: trigger-hello-world-comment
+      run: |
+        COMMENT="hello world"
+        curl -X POST \
+          -H "Authorization: token ${GITHUB_TOKEN}" \
+          -d "{\"body\": \"${COMMENT}\"}" \
