@@ -1,4 +1,4 @@
-name: 3.1-echo-context-on-pr
+name: 3.1-serializing-data-when-manual-trigger
 
 on: workflow_dispatch
 
