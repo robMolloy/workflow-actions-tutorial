@@ -15,6 +15,7 @@ jobs:
     steps:
     - name: Echo the input message
       run: |
-        MY_MESSAGE="${{ github.event.inputs.message }}"
-        echo "$MY_MESSAGE"
-        echo "You entered '$MY_MESSAGE'"
+        MY_MESSAGE=${{ github.event.inputs.message }}
+        echo ${{ github.event.inputs.message }}
+        echo ${{ MY_MESSAGE }}
+        echo "\n\n You entered '${{ github.event.inputs.message }}'"
