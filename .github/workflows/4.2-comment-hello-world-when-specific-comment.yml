@@ -1,4 +1,4 @@
-name: Respond to Trigger Comment
+name: 4.2-comment-hello-world-when-specific-comment
 
 on:
   issue_comment:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   comment-on-pr:
-    if: ${{ github.event.issue.pull_request }}  # Only proceed if the comment is on a pull request
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '/trigger-hello-world-comment' }}
     runs-on: ubuntu-latest
 
     steps:
