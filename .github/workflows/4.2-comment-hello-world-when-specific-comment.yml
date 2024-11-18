@@ -3,7 +3,7 @@ name: 4.2-comment-hello-world-when-specific-comment
 on:
   issue_comment: 
     types:
-      - created # asd
+      - created # blah
 
 jobs:
   serializing-data:
