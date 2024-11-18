@@ -7,6 +7,10 @@ jobs:
   serializing-data:
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '/trigger-hello-world-comment' }}
     runs-on: ubuntu-latest
+    
+    permissions:
+      issues: write
+
 
     steps:
     - name: Serialize and echo github context
