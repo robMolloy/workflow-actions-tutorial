@@ -1,0 +1,23 @@
+name: 4.3-comment-with-relevant-data-when-specific-comment
+
+on:
+  issue_comment:
+    types: [created]  # Trigger when a new comment is created
+
+jobs:
+  comment-on-pr:
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '/trigger-relevant-data-comment' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Serialize and echo github context
+        run: |
+          echo '${{ toJson(github) }}'
+
+      - name: Post Relevant data Comment
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{ "body": "hello world2" }' \
+            "${{ github.event.issue.comments_url }}"
