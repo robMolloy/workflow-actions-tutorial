@@ -9,4 +9,4 @@ jobs:
     steps:
     - name: Echo the input message
       run: |
-        echo ${{ github }}
+        echo ${{ toJson(github) }}
