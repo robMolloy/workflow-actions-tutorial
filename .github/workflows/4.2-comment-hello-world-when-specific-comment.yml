@@ -1,7 +1,7 @@
 on:
   issue_comment: 
     types:
-      - created # blah
+      - created # blah2
 
 jobs:
   serializing-data:
