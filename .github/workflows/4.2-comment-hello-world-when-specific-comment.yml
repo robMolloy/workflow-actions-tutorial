@@ -1,21 +1,22 @@
 on:
   issue_comment: 
     types:
-      - created # blah
+      - created # blah2
 
 jobs:
   serializing-data:
     runs-on: ubuntu-latest
 
     steps:
-    - name: debug
-      run: |
-        echo github.event.issue.pull_request
-        echo null && github.event.comment.body 
-        echo '/trigger-hello-world-comment'
     - name: Serialize and echo github context
       run: |
         echo '${{ toJson(github) }}'
+        
+    - name: debug
+      run: |
+        echo github.event.issue.pull_request
+        echo github.event.comment.body 
+        echo '/trigger-hello-world-comment'
     
     - name: trigger-hello-world-comment
       run: |
