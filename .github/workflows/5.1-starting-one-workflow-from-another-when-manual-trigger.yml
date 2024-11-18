@@ -1,0 +1,28 @@
+name: 5.1-starting-one-workflow-from-another-when-manual-trigger
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger-another-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug GitHub Context
+        run: echo "${{ toJson(github) }}"
+
+      - name: Trigger Comment Time Workflow
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const workflow_id = 'comment-hello-world-on-pr.yml'; // The name of the workflow file
+            const ref = 'main'; // Use your branch name
+            await github.rest.actions.createWorkflowDispatch({
+              owner,
+              repo,
+              workflow_id,
+              ref,
+              inputs: {
+                pr_number: github.event.issue.number
+              }
+            });
