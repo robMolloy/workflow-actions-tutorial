@@ -11,16 +11,30 @@ jobs:
     permissions:
       issues: write
 
+
     steps:
+    - name: Serialize and echo github context
+      run: |
+        echo '${{ toJson(github) }}'
+
+    - name: debug
+      run: |
+        echo '123'
+        echo ${{ github.event.issue.pull_request }}
+        echo ${{ github.event.comment.body  }}
+        echo ${{ secrets.GITHUB_TOKEN  }}
+        echo ${{ github.event.issue.number  }}
+        echo ${{ github.repository  }}
+        echo '/trigger-hello-world-comment'
+    
     - name: trigger-hello-world-comment
       run: |
         PR_NUMBER=${{ github.event.issue.number }}
         API_URL="https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
         echo "API_URL=${API_URL}"
         echo "PR_NUMBER=${PR_NUMBER}"
-        curl -L \
-          -X POST \
-          -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
+        curl -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d '{"body": "hello world"}' \
-          "${{ API_URL }}"
+          "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
