@@ -1,7 +1,7 @@
 on:
   issue_comment: 
     types:
-      - created # blah2
+      - created # blah3
 
 jobs:
   serializing-data:
@@ -19,6 +19,7 @@ jobs:
 
     - name: debug
       run: |
+        echo '123'
         echo ${{ github.event.issue.pull_request }}
         echo ${{ github.event.comment.body  }}
         echo ${{ secrets.GITHUB_TOKEN  }}
@@ -29,6 +30,7 @@ jobs:
     - name: trigger-hello-world-comment
       run: |
         PR_NUMBER=${{ github.event.issue.number }}
+        API_URL="https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
         echo "PR_NUMBER=${PR_NUMBER}"
         curl -X POST \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
