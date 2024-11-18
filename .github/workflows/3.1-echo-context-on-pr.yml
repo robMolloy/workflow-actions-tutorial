@@ -1,4 +1,4 @@
-name: 2.1-echo-input-text-with-manual-trigger
+name: 3.1-echo-context-on-pr
 
 on:
   workflow_dispatch:
