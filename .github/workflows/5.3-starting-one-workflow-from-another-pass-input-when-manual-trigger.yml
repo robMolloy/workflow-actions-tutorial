@@ -1,0 +1,32 @@
+name: 5.3-starting-one-workflow-from-another-pass-input-when-manual-trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      init_message:
+        description: 'Enter the text to echo'
+        required: true
+
+jobs:
+  trigger-another-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug GitHub Context
+        run: echo "${{ toJson(github) }}"
+
+      - name: Trigger another Workflow
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const workflow_id = '2.1-echo-input-text-with-manual-trigger.yml'; // The name of the workflow file
+            const ref = 'main'; // Use your branch name
+            await github.rest.actions.createWorkflowDispatch({
+              owner,
+              repo,
+              workflow_id,
+              ref,
+              inputs: {
+                message: github.event.inputs.init_message
+              }
+            });
