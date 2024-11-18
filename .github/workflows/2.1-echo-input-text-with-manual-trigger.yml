@@ -15,8 +15,13 @@ jobs:
     steps:
     - name: Echo the input message
       run: |
+        # Store the input message in a Bash variable
         MY_MESSAGE="${{ github.event.inputs.message }}"
-        echo ${{ github.event.inputs.message }}
-        echo $MY_MESSAGE
-        echo "\n\n You entered '${{ github.event.inputs.message }}'"
-        echo "\n\n You entered '${{ MY_MESSAGE }}'"
+
+        # Echo the message using both the direct reference and the stored variable
+        echo "${{ github.event.inputs.message }}"
+        echo "$MY_MESSAGE"
+
+        # Echo with a custom message for clarity
+        echo "\n\nYou entered: '${{ github.event.inputs.message }}'"
+        echo "\n\nYou entered: '$MY_MESSAGE'"
