@@ -27,6 +27,6 @@ jobs:
               workflow_id,
               ref,
               inputs: {
-                message: github.event.inputs.init_message
+                message: ${{ github.event.inputs.init_message }}
               }
             });
