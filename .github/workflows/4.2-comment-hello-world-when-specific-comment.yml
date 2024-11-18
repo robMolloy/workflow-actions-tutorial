@@ -29,16 +29,20 @@ jobs:
     
     - name: trigger-hello-world-comment
       run: |
-        PR_NUMBER=${{ github.event.issue.number }}
-        API_URL="https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
-        echo "API_URL=${API_URL}"
-        echo "PR_NUMBER=${PR_NUMBER}"
-        curl -L \
-          -X POST \
-          -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
+        # Get the current time
+        CURRENT_TIME=$(date --utc +'%Y-%m-%d %H:%M:%S')
+
+        # Construct the JSON payload for the comment
+        COMMENT=$(printf "### Current Time\nThe current time is: %s\n" "$CURRENT_TIME")
+        JSON_PAYLOAD=$(jq -n --arg body "$COMMENT" '{body: $body}')
+
+        # Post the comment on the PR
+        curl -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
-          -d '{"body": "hello world"}' \
-          "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
+          -d "$JSON_PAYLOAD" \
+          "https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
+        
         
       # curl -L \
       #   -X POST \
