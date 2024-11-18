@@ -11,7 +11,6 @@ jobs:
 
     steps:
       - name: Post Hello World Comment
-        if: ${{ env.triggered == 'true' }}
         run: |
           # Construct the JSON payload for the comment
           JSON_PAYLOAD=$(jq -n --arg body "hello world" '{body: $body}')
@@ -24,6 +23,5 @@ jobs:
             "${{ github.event.issue.comments_url }}"
 
       - name: Show completion message
-        if: ${{ env.triggered == 'true' }}
         run: |
           echo "Commented: hello world"
