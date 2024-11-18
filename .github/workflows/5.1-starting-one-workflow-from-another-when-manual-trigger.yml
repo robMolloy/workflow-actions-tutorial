@@ -15,7 +15,7 @@ jobs:
         with:
           script: |
             const { owner, repo } = context.repo;
-            const workflow_id = 'comment-hello-world-on-pr.yml'; // The name of the workflow file
+            const workflow_id = '1.1-echo-hello-world-when-manual-trigger.yml'; // The name of the workflow file
             const ref = 'main'; // Use your branch name
             await github.rest.actions.createWorkflowDispatch({
               owner,
