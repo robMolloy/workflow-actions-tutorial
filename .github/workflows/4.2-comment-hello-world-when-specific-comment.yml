@@ -5,7 +5,7 @@ on:
 
 jobs:
   serializing-data:
-    if: ${{ github.event.comment.body == '/trigger-relevant-data' }} 
+    if: ${{ github.event.comment.body == '/trigger-hello-world-comment' }} 
     runs-on: ubuntu-latest
 
     steps:
