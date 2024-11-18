@@ -15,12 +15,8 @@ jobs:
     steps:
     - name: Echo the input message
       run: |
-        json='{"name": "Alice", "address": {"city": "Metropolis", "street": "123 Main St"}}'
-        address=$(jq -r '.name')
-        echo $json
-        echo $address
         MY_MESSAGE="${{ github.event.inputs.message }}"
         echo ${{ github.event.inputs.message }}
         echo $MY_MESSAGE
         echo "\n\n You entered '${{ github.event.inputs.message }}'"
-        echo "\n\n You entered '$MY_MESSAGE'"
+        echo "\n\n You entered '${{ MY_MESSAGE }}'"
