@@ -40,5 +40,7 @@
 
 # sequential vs parallel
 
-- 8.1-two-jobs-in-parallel
-- 8.2-waiting-for-jobs-to-finish-before-starting-another
+- 8.1-parallel-jobs
+- 8.2-waiting-for-parallel-jobs-to-finish-before-starting-another
+- 8.3-assigning-outputs-from-jobs
+- 8.4-reassigning-outputs-from-jobs
