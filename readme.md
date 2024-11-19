@@ -31,3 +31,9 @@
 # accessing code
 
 - 6.1-echoing-code-from-a-file-in-a-repo
+
+# using shell scripts
+
+- 7.1-using-shell-scripts-to-echo-hello-world
+- 7.2-using-output-from-shell-script
+- 7.3-passing-input-and-using-output-from-shell-script
