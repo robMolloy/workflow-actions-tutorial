@@ -17,6 +17,6 @@ jobs:
         run: |
           echo "Your text here" > file.txt
 
-      - name: Display the contents of the readme
+      - name: Display the contents of the file.txt
         run: |
           cat ./file.txt
