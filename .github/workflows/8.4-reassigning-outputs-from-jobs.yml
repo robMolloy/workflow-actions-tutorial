@@ -1,4 +1,4 @@
-name: 8.4-assigning-outputs-from-jobs
+name: 8.4-reassigning-outputs-from-jobs
 
 on:
   push:
