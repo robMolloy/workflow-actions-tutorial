@@ -1,0 +1,23 @@
+name: 7.3-passing-input-and-using-output-from-shell-script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-shell-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Shell Script
+        run: |
+          chmod +x ./.github/workflows/scripts/receive-input.sh
+          output=$(bash ./.github/workflows/scripts/receive-input.sh "rob")
+          echo "Script Output: $output"
+          
+          short_string=${output:0:5}
+          echo "Script Output: $short_string"
