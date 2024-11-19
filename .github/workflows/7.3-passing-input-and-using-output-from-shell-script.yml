@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Run Shell Script
         run: |
           chmod +x ./.github/workflows/scripts/receive-input.sh
