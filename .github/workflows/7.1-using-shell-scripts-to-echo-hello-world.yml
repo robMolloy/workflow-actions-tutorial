@@ -16,6 +16,7 @@ jobs:
       - name: Run Shell Script
         run: |
           ls -A ./
+          ls -A ./.github/workflows/scripts
 
       # - name: Run Shell Script
       #   run: |
