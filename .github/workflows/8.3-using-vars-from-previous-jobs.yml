@@ -6,8 +6,6 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.step1.outputs.output }}  # Referencing the output of step1
     steps:
       - name: Print message from Job 1
         id: step1
@@ -17,8 +15,6 @@ jobs:
   
   job2:
     runs-on: ubuntu-latest
-    outputs:
-      output2: ${{ steps.step1.outputs.output }}  # Referencing the output of step1
     steps:
       - name: Print message from Job 2
         id: step1
