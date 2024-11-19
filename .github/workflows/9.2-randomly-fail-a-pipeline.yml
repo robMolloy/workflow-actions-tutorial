@@ -1,0 +1,17 @@
+name: 9.2-randomly-fail-a-pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  echo-hello-world-when-manual-trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hello
+      run: |
+        RANDOM_NUMBER=$((RANDOM % 100 + 1))
+        echo "Generated random number: $RANDOM_NUMBER"
+        exit 1
