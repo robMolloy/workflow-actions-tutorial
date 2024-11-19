@@ -7,7 +7,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     outputs:
-      output: "output from job 1"
+      output: ${{ steps.step1.outputs.output }} 
     steps:
       - name: Print message from Job 1
         id: step1
