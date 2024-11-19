@@ -1,1 +1,23 @@
-7.1-using-shell-scripts-to-echo-hello-world
+name: 7.1-using-shell-scripts-to-echo-hello-world
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-shell-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Shell Script
+        run: |
+          ls -A ./
+
+      # - name: Run Shell Script
+      #   run: |
+      #     chmod +x ./.github/workflows/scripts/hello-world.sh
+      #     ./.github/workflows/scripts/hello-world.sh
