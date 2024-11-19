@@ -10,7 +10,6 @@ jobs:
       output: "output from job 1"
     steps:
       - name: Print message from Job 1
-        id: step1
         run: |
           echo "This is Job 1"
   
@@ -20,7 +19,6 @@ jobs:
       output: "output from job 2"
     steps:
       - name: Print message from Job 2
-        id: step1
         run: |
           echo "This is Job 2"
   
