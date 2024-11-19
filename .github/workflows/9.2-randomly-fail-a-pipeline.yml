@@ -16,4 +16,5 @@ jobs:
         echo "Generated random number: $RANDOM_NUMBER"
         if [ $RANDOM_NUMBER -lt 50 ]; then
           exit 1
+        fi
         echo "did not fail"
