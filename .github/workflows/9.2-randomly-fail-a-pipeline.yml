@@ -14,4 +14,5 @@ jobs:
       run: |
         RANDOM_NUMBER=$((RANDOM % 100 + 1))
         echo "Generated random number: $RANDOM_NUMBER"
-        exit 1
+        if [ $RANDOM_NUMBER -lt 50 ]; then
+          exit 1
