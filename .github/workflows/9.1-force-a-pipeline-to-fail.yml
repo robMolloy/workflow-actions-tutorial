@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Say Hello
+    - name: fail pipeline
       run: |
         echo "Hello, World! This workflow will fail."
         exit 1
