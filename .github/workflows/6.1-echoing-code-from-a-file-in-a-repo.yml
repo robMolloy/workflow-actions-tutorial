@@ -13,6 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Display the contents of a file
+      - name: Display the contents of the readme
         run: |
-          cat /readme.md
+          cat ./readme.md
