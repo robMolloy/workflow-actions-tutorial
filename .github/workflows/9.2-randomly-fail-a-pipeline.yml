@@ -3,7 +3,7 @@ name: 9.2-randomly-fail-a-pipeline
 on:
   push:
     branches:
-      - main # as
+      - main # as1
 
 jobs:
   job1:
