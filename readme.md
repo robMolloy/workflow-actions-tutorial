@@ -37,3 +37,8 @@
 - 7.1-using-shell-scripts-to-echo-hello-world
 - 7.2-using-output-from-shell-script
 - 7.3-passing-input-and-using-output-from-shell-script
+
+# sequential vs parallel
+
+- 8.1-two-jobs-in-parallel
+- 8.2-waiting-for-jobs-to-finish-before-starting-another
