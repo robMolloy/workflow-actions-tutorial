@@ -1,0 +1,17 @@
+name: 9.1-force-a-pipeline-to-fail
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  echo-hello-world-when-manual-trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hello
+      run: |
+        echo "Hello, World! This workflow will fail."
+        exit 1
+
