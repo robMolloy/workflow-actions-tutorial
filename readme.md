@@ -7,7 +7,7 @@
 - 1.5-echo-hello-world-when-comment
 - 1.6-echo-hello-world-when-specific-comment
 
-# ingesting inputs
+# ingesting workflow_dispatch inputs
 
 - 2.1-echo-input-text-with-manual-trigger
 
