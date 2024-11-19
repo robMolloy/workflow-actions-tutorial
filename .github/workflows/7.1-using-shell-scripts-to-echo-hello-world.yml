@@ -20,5 +20,4 @@ jobs:
 
       - name: Run Shell Script
         run: |
-          chmod +x ./.github/workflows/scripts/hello-world.sh
           ./.github/workflows/scripts/hello-world.sh
