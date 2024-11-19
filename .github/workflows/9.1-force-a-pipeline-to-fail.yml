@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  echo-hello-world-when-manual-trigger:
+  job1:
     runs-on: ubuntu-latest
 
     steps:
