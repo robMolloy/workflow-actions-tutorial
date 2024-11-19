@@ -49,7 +49,7 @@ jobs:
           echo "Job 5 started using output from jobs 1-4: $output1 $output2 $output3 $output4"
   
   job6:
-    needs: [job1, job2, job3, job4]
+    needs: [job1, job2, job3, job4,job5]
     runs-on: ubuntu-latest
     steps:
       - name: Print message from Jobs 1-4
