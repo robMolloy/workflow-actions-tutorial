@@ -6,8 +6,6 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.step1.outputs.output }}
     steps:
       - name: Print message from Job 1
         id: step1
@@ -18,8 +16,6 @@ jobs:
   
   job2:
     runs-on: ubuntu-latest
-    outputs:
-      output2: ${{ steps.step1.outputs.output }}
     steps:
       - name: Print message from Job 2
         id: step1
@@ -34,4 +30,4 @@ jobs:
     steps:
       - name: Print message from Jobs 1 and 2
         run: |
-          echo "Job 3 started using output from jobs 1 and 2: ${{ needs.job1.outputs.output }} ${{ needs.job2.outputs.output }}"
+          echo "Job 3 started using output from jobs 1 and 2: ${{ needs.job1.outputs.output1 }} ${{ needs.job2.outputs.output2 }}"
