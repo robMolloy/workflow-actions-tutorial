@@ -1,4 +1,4 @@
-name: 8.2-waiting-for-jobs-to-finish-before-starting-another
+name: 8.2-waiting-for-parallel-jobs-to-finish-before-starting-another
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
           echo "This is Job 3"
           sleep 10
           echo "This is Job 3"
-          
+
   job4:
     runs-on: ubuntu-latest
     steps:
@@ -45,4 +45,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print message from Job 3
-        run: echo "Job 3 started after Job 1 and Job 2 finished"
+        run: echo "Job 5 started after Jobs 1-4 finished"
