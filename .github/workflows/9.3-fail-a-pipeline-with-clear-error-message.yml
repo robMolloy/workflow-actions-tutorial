@@ -1,0 +1,21 @@
+name: 9.3-fail-a-pipeline-with-clear-error-message
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: fail randomly
+      run: |
+        RANDOM_NUMBER=$((RANDOM % 100 + 1))
+        echo "Generated random number: $RANDOM_NUMBER"
+        if [ $RANDOM_NUMBER -lt 98 ]; then
+          echo "Error: random number is less than 98" >&2
+          exit 1
+        fi
+        echo "did not fail"
