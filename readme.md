@@ -44,3 +44,9 @@
 - 8.2-waiting-for-parallel-jobs-to-finish-before-starting-another
 - 8.3-assigning-outputs-from-jobs
 - 8.4-reassigning-outputs-from-jobs
+
+# failing a pipeline
+
+- 9.1-force-a-pipeline-to-fail
+- 9.2-randomly-fail-a-pipeline
+- 9.3-fail-a-pipeline-with-clear-error-message
