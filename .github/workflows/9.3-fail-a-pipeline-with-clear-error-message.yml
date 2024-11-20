@@ -16,6 +16,7 @@ jobs:
         echo "Generated random number: $RANDOM_NUMBER"
         if [ $RANDOM_NUMBER -lt 98 ]; then
           echo "Error: random number is less than 98" >&2
+          echo "::error::Error: no secret key found"
           exit 1
         fi
         echo "did not fail"
