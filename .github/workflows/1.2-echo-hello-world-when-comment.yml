@@ -1,0 +1,14 @@
+name: 1.2-echo-hello-world-when-comment
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  echo-hello-world-when-comment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hello
+      run: echo "Hello, World! A comment has been added to a pull request."

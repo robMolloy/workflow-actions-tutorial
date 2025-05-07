@@ -1,0 +1,26 @@
+name: 6.3-echoing-code-from-a-replaced-file-in-a-repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  display-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: delete the readme.md file
+        run: |
+          rm ./readme.md
+
+      - name: Create a new readme.md file
+        run: |
+          echo "Your new readme here" > readme.md
+
+      - name: Display the contents of the readme.md
+        run: |
+          cat ./readme.md

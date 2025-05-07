@@ -1,0 +1,26 @@
+name: 2.1-echo-input-text-with-manual-trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Enter the text to echo'
+        required: true
+        default: 'Hello, World!'
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Echo the input message
+      run: |
+        MY_MESSAGE="${{ github.event.inputs.message }}"
+
+
+        echo "$MY_MESSAGE"
+        echo ${{ github.event.inputs.message }}
+        echo github.event.inputs.message 
+        echo "\n\nYou entered: '${{ github.event.inputs.message }}'"
+        echo -e "Here are some new lines for your viewing pleasure\n\nYou entered: '$MY_MESSAGE'\n\n"
+        echo "\n\nYou entered: $MY_MESSAGE"

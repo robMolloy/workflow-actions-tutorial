@@ -1,0 +1,12 @@
+name: 1.2-echo-hello-world-when-push
+
+on:
+  push:
+
+jobs:
+  echo-hello-world-when-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hello
+      run: echo "Hello, World! This workflow was triggered by a push"

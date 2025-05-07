@@ -1,0 +1,14 @@
+name: PR Comment Hello World
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  greet_on_pr_comment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hello
+      run: echo "Hello, World! A comment has been added to a pull request."

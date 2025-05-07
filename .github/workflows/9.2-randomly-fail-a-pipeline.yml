@@ -1,0 +1,20 @@
+name: 9.2-randomly-fail-a-pipeline
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: fail randomly
+      run: |
+        RANDOM_NUMBER=$((RANDOM % 100 + 1))
+        echo "Generated random number: $RANDOM_NUMBER"
+        if [ $RANDOM_NUMBER -lt 50 ]; then
+          exit 1
+        fi
+        echo "did not fail"

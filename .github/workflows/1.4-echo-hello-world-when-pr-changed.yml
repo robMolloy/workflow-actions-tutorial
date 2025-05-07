@@ -1,0 +1,19 @@
+name: 1.4-echo-hello-world-when-pr-changed.yml
+
+on:
+  pull_request: # Trigger the workflow on pull requests, change
+    types:
+      - opened
+      - synchronize 
+
+jobs:
+  echo-hello-world-when-pr-changed:
+    if: false
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Say Hello
+      run: echo "Hello, World! A PR has been opened or updated."

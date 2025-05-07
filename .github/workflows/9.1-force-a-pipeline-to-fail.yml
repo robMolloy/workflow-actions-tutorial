@@ -1,0 +1,17 @@
+name: 9.1-force-a-pipeline-to-fail
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: fail pipeline
+      run: |
+        echo "Hello, World! This workflow will fail."
+        exit 1
+

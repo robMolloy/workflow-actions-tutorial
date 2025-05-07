@@ -1,0 +1,12 @@
+name: 1.1-echo-hello-world-when-manual-trigger
+
+on:
+  workflow_dispatch:
+
+jobs:
+  echo-hello-world-when-manual-trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hello
+      run: echo "Hello, World! This workflow was triggered manually."
